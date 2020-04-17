@@ -3,8 +3,10 @@ import { StyleSheet, View, Image, Dimensions, Text } from "react-native";
 import QuestionCard from "./QuestionCard";
 import CountdownCircle from "react-native-countdown-circle";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import QuestionGenerator from "./QuestionGenerator";
 
 export default function QuestionPage({ navigation }) {
+  QuestionGenerator();
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
