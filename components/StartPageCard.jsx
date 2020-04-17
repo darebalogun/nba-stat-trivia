@@ -12,9 +12,21 @@ export default function StartPageCard(props) {
     "Put your knowledge of NBA stats to the test"
   );
   const [options, setOptions] = useState([
-    { key: "1", value: "New Game", onPress: props.newGame },
-    { key: "2", value: "LeaderBoard", onPress: props.newGame },
-    { key: "3", value: "Highscore", onPress: props.newGame },
+    { key: "1", value: "New Game", onPress: props.onNewGame },
+    {
+      key: "2",
+      value: "LeaderBoard",
+      onPress: () => {
+        console.log("LeaderBoard Pressed");
+      },
+    },
+    {
+      key: "3",
+      value: "Highscore",
+      onPress: () => {
+        console.log("Highscore Pressed");
+      },
+    },
   ]);
 
   return (
@@ -27,7 +39,7 @@ export default function StartPageCard(props) {
           <TouchableOpacity
             key={option.key}
             style={styles.button}
-            onPress={props.onNewGame}
+            onPress={option.onPress}
           >
             <View>
               <Text>{option.value}</Text>
