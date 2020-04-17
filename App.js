@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import Question from "./components/Question";
+import CountDownCircle from "react-native-countdown-circle";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
           source={require("./assets/placeholder.png")}
           style={styles.image}
         />
+        <CountDownCircle seconds={90} radius={30} borderWidth={8} />
       </View>
       <View style={styles.questionCard}>
         <Question />
@@ -25,9 +27,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginVertical: 35,
     marginHorizontal: 10,
-    borderRadius: 20,
-    borderColor: "black",
-    borderWidth: 1,
   },
   image: {
     width: Dimensions.get("screen").height / 10,
@@ -36,8 +35,9 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 10,
     height: Dimensions.get("screen").height / 9,
     padding: 5,
   },

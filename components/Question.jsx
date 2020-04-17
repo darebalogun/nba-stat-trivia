@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import {
   View,
   Text,
-  FlatList,
+  Dimensions,
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
@@ -23,25 +23,44 @@ export default function Question() {
         <Text>{question}</Text>
       </View>
       <View style={styles.options}>
-        <FlatList
-          data={options}
-          renderItem={(option) => (
-            <TouchableOpacity>
-              <Text>{option.item.value}</Text>
-            </TouchableOpacity>
-          )}
-        />
+        {options.map((option) => (
+          <TouchableOpacity key={option.key} style={styles.button}>
+            <View>
+              <Text>{option.value}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   question: {
     flex: 1,
-    margin: 50,
+    margin: 10,
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: "2%",
   },
   options: {
     flex: 2,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    marginVertical: 30,
+  },
+  button: {
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 10,
+    marginHorizontal: 10,
+    height: Dimensions.get("screen").height / 15,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: "5%",
   },
 });
