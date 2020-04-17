@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,14 +7,14 @@ import {
   StyleSheet,
 } from "react-native";
 
-export default function Question() {
+export default function StartPageCard(props) {
   const [question, setQuestion] = useState(
     "Put your knowledge of NBA stats to the test"
   );
   const [options, setOptions] = useState([
-    { key: "1", value: "New Game" },
-    { key: "2", value: "LeaderBoard" },
-    { key: "3", value: "Highscore" },
+    { key: "1", value: "New Game", onPress: props.newGame },
+    { key: "2", value: "LeaderBoard", onPress: props.newGame },
+    { key: "3", value: "Highscore", onPress: props.newGame },
   ]);
 
   return (
@@ -24,7 +24,11 @@ export default function Question() {
       </View>
       <View style={styles.options}>
         {options.map((option) => (
-          <TouchableOpacity key={option.key} style={styles.button}>
+          <TouchableOpacity
+            key={option.key}
+            style={styles.button}
+            onPress={props.onNewGame}
+          >
             <View>
               <Text>{option.value}</Text>
             </View>

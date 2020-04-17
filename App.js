@@ -1,52 +1,37 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
-import Question from "./components/Question";
+import React, { Component } from "react";
+import { StyleSheet, View, Image, Dimensions } from "react-native";
+import QuestionPage from "./components/QuestionPage";
+import StartPage from "./components/StartPage";
 import CountDownCircle from "react-native-countdown-circle";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.topBar}>
-        <Image
-          source={require("./assets/placeholder.png")}
-          style={styles.image}
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          gesturesEnabled: false,
+        }}
+      >
+        <Stack.Screen
+          name="StartPage"
+          component={StartPage}
+          options={{
+            gestureEnabled: false,
+          }}
         />
-        <CountDownCircle seconds={90} radius={30} borderWidth={8} />
-      </View>
-      <View style={styles.questionCard}>
-        <Question />
-      </View>
-    </View>
+        <Stack.Screen
+          name="QuestionPage"
+          component={QuestionPage}
+          options={{
+            gestureEnabled: false,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    flexDirection: "column",
-    marginVertical: 35,
-    marginHorizontal: 10,
-  },
-  image: {
-    width: Dimensions.get("screen").height / 10,
-    height: Dimensions.get("screen").height / 10,
-  },
-  topBar: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 10,
-    height: Dimensions.get("screen").height / 9,
-    padding: 5,
-  },
-  questionCard: {
-    borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 10,
-    marginHorizontal: 10,
-    marginTop: 30,
-    height: "60%",
-  },
-});
