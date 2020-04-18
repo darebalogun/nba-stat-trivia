@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import QuestionGenerator from "./QuestionGenerator";
 
 export default function QuestionCard(props) {
   const [question, setQuestion] = useState(
@@ -17,6 +18,10 @@ export default function QuestionCard(props) {
     { key: "3", value: "Tim Duncan" },
   ]);
 
+  const onOptionPress = () => {
+    QuestionGenerator();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.question}>
@@ -24,7 +29,11 @@ export default function QuestionCard(props) {
       </View>
       <View style={styles.options}>
         {options.map((option) => (
-          <TouchableOpacity key={option.key} style={styles.button}>
+          <TouchableOpacity
+            key={option.key}
+            style={styles.button}
+            onPress={onOptionPress}
+          >
             <View>
               <Text>{option.value}</Text>
             </View>
