@@ -24,26 +24,34 @@ export function GetPlayerName(year, playerID) {
 
     shuffle(otherPlayers);
 
-    let otherPlayerName1 =
-      otherPlayers[0].firstName + " " + otherPlayers[0].lastName;
-    let otherPlayerName2 =
-      otherPlayers[1].firstName + " " + otherPlayers[1].lastName;
+    console.log(otherPlayers.length);
+    try {
+      let otherPlayerName1 =
+        otherPlayers[0].firstName + " " + otherPlayers[0].lastName;
+      let otherPlayerName2 =
+        otherPlayers[1].firstName + " " + otherPlayers[1].lastName;
 
-    let options = [
-      {
-        name: playerName,
-        correct: true,
-        key: "1",
-      },
-      {
-        name: otherPlayerName1,
-        correct: false,
-        key: "2",
-      },
-      { name: otherPlayerName2, correct: false, key: "3" },
-    ];
+      let options = [
+        {
+          name: playerName,
+          correct: true,
+          key: "1",
+        },
+        {
+          name: otherPlayerName1,
+          correct: false,
+          key: "2",
+        },
+        { name: otherPlayerName2, correct: false, key: "3" },
+      ];
 
-    return options;
+      shuffle(options);
+
+      return options;
+    } catch (error) {
+      console.warn(error);
+      return null;
+    }
   }
 
   return GetPlayer();

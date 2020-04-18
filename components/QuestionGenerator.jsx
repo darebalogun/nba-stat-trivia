@@ -55,9 +55,11 @@ export default function GenerateQuestion(updateQuestion) {
 
   let team = teams[Math.floor(Math.random() * teams.length)];
 
+  let Team = team.charAt(0).toUpperCase() + team.substring(1);
+
   let question =
     "Who led the " +
-    team +
+    Team +
     " in " +
     teamLeader.text +
     " in " +
@@ -79,11 +81,17 @@ export default function GenerateQuestion(updateQuestion) {
       })
       .then((json) => {
         try {
+          console.log(typeof json);
+          console.log(typeof json.league.standard[teamLeader.key]);
           let personId = json.league.standard[teamLeader.key][0].personId;
           let options = GetPlayerName(year, personId);
-          updateQuestion(question, options);
+          if (options !== null) {
+            updateQuestion(question, options);
+          } else {
+            GenerateQuestion(updateQuestion);
+          }
         } catch (error) {
-          console.error(error);
+          console.warn(error);
         }
       })
       .catch((error) => {

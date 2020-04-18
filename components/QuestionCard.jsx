@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -18,12 +18,17 @@ export default function QuestionCard(props) {
     { key: "3", name: "Tim Duncan", correct: false },
   ]);
 
+  useEffect(() => {
+    GenerateQuestion(updateQuestion);
+  }, []);
+
   const updateQuestion = (question, options) => {
     setQuestion(question);
     setOptions(options);
   };
 
-  const onOptionPress = () => {
+  const onOptionPress = (option) => {
+    console.log(option.correct);
     GenerateQuestion(updateQuestion);
   };
 
@@ -33,17 +38,30 @@ export default function QuestionCard(props) {
         <Text>{question}</Text>
       </View>
       <View style={styles.options}>
-        {options.map((option) => (
-          <TouchableOpacity
-            key={option.key}
-            style={styles.button}
-            onPress={onOptionPress}
-          >
-            <View>
-              <Text>{option.name}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => onOptionPress(options[0])}
+        >
+          <View>
+            <Text>{options[0].name}</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => onOptionPress(options[1])}
+        >
+          <View>
+            <Text>{options[1].name}</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => onOptionPress(options[2])}
+        >
+          <View>
+            <Text>{options[2].name}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
