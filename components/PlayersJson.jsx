@@ -33,12 +33,14 @@ export function GetPlayerName(year, playerID) {
       {
         name: playerName,
         correct: true,
+        key: "1",
       },
       {
         name: otherPlayerName1,
         correct: false,
+        key: "2",
       },
-      { name: otherPlayerName2, correct: false },
+      { name: otherPlayerName2, correct: false, key: "3" },
     ];
 
     return options;

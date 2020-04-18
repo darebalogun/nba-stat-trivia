@@ -1,6 +1,6 @@
 import { GetPlayerName } from "./PlayersJson";
 
-export default function GenerateQuestion() {
+export default function GenerateQuestion(updateQuestion) {
   const teamLeaders = [
     { text: "points per game", key: "ppg" },
     { text: "rebounds per game", key: "trpg" },
@@ -81,8 +81,7 @@ export default function GenerateQuestion() {
         try {
           let personId = json.league.standard[teamLeader.key][0].personId;
           let options = GetPlayerName(year, personId);
-          console.log(question);
-          console.log(options);
+          updateQuestion(question, options);
         } catch (error) {
           console.error(error);
         }

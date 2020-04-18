@@ -6,20 +6,25 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import QuestionGenerator from "./QuestionGenerator";
+import GenerateQuestion from "./QuestionGenerator";
 
 export default function QuestionCard(props) {
   const [question, setQuestion] = useState(
     "Who led the league in rebounds in 2004?"
   );
   const [options, setOptions] = useState([
-    { key: "1", value: "Shaquille O'Neil" },
-    { key: "2", value: "Kevin Garnett" },
-    { key: "3", value: "Tim Duncan" },
+    { key: "1", name: "Shaquille O'Neil", correct: false },
+    { key: "2", name: "Kevin Garnett", correct: false },
+    { key: "3", name: "Tim Duncan", correct: false },
   ]);
 
+  const updateQuestion = (question, options) => {
+    setQuestion(question);
+    setOptions(options);
+  };
+
   const onOptionPress = () => {
-    QuestionGenerator();
+    GenerateQuestion(updateQuestion);
   };
 
   return (
@@ -35,7 +40,7 @@ export default function QuestionCard(props) {
             onPress={onOptionPress}
           >
             <View>
-              <Text>{option.value}</Text>
+              <Text>{option.name}</Text>
             </View>
           </TouchableOpacity>
         ))}
