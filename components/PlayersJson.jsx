@@ -13,7 +13,6 @@ export function GetPlayerName(year, playerID) {
       return players.personId == playerID;
     });
     let playerName = player[0].firstName + " " + player[0].lastName;
-    console.log(playerName);
 
     let otherPlayers = players.filter(function (players) {
       return players.teamId == player[0].teamId;
@@ -30,10 +29,19 @@ export function GetPlayerName(year, playerID) {
     let otherPlayerName2 =
       otherPlayers[1].firstName + " " + otherPlayers[1].lastName;
 
-    console.log(otherPlayerName1);
-    console.log(otherPlayerName2);
+    let options = [
+      {
+        name: playerName,
+        correct: true,
+      },
+      {
+        name: otherPlayerName1,
+        correct: false,
+      },
+      { name: otherPlayerName2, correct: false },
+    ];
 
-    return playerName;
+    return options;
   }
 
   return GetPlayer();

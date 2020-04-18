@@ -67,8 +67,6 @@ export default function GenerateQuestion() {
     "?";
 
   const getAnswer = () => {
-    console.log(question);
-
     fetch(
       "http://data.nba.net/data/prod/v1/" +
         year +
@@ -82,7 +80,9 @@ export default function GenerateQuestion() {
       .then((json) => {
         try {
           let personId = json.league.standard[teamLeader.key][0].personId;
-          let playerName = GetPlayerName(year, personId);
+          let options = GetPlayerName(year, personId);
+          console.log(question);
+          console.log(options);
         } catch (error) {
           console.error(error);
         }
