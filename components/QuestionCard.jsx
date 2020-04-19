@@ -16,11 +16,14 @@ export default class QuestionCard extends Component {
       { key: "2", name: "", correct: false },
       { key: "3", name: "", correct: false },
     ],
+    nextQuestion: "",
+    nextOptions: [],
     noCorrect: 0,
   };
 
   componentDidMount() {
     GenerateQuestion(this.updateQuestion);
+    GenerateQuestion(this.updateNextQuestion);
   }
 
   updateQuestion = (question, options) => {
@@ -28,8 +31,17 @@ export default class QuestionCard extends Component {
     this.setState({ options });
   };
 
+  updateNextQuestion = (nextQuestion, nextOptions) => {
+    this.setState({ nextQuestion });
+    this.setState({ nextOptions });
+  };
+
   onOptionPress = (option) => {
-    GenerateQuestion(this.updateQuestion);
+    this.setState({
+      question: this.state.nextQuestion,
+      options: this.state.nextOptions,
+    });
+    GenerateQuestion(this.updateNextQuestion);
     if (option.correct) {
       const newNoCorrect = this.state.noCorrect + 1;
       this.setState({ noCorrect: newNoCorrect });
