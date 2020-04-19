@@ -24,7 +24,6 @@ export function GetPlayerName(year, playerID) {
 
     shuffle(otherPlayers);
 
-    console.log(otherPlayers.length);
     try {
       let otherPlayerName1 =
         otherPlayers[0].firstName + " " + otherPlayers[0].lastName;

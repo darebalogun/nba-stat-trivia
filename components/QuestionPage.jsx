@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Image, Dimensions, Text } from "react-native";
 import QuestionCard from "./QuestionCard";
 import CountdownCircle from "react-native-countdown-circle";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import QuestionGenerator from "./QuestionGenerator";
 
 export default function QuestionPage({ navigation }) {
+  const [score, setScore] = useState(0);
+
+  const onUpdateScore = (score) => {
+    setScore(score);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
@@ -13,10 +18,21 @@ export default function QuestionPage({ navigation }) {
           source={require(".././assets/placeholder.png")}
           style={styles.image}
         />
-        <CountdownCircle seconds={90} radius={30} borderWidth={10} />
+        <CountdownCircle
+          seconds={90}
+          radius={30}
+          borderWidth={10}
+          onTimeElapsed={() => {
+            navigation.navigate("EndPage", { score: score });
+          }}
+        />
       </View>
       <View style={styles.questionCard}>
-        <QuestionCard />
+        <QuestionCard
+          updateScore={(score) => {
+            onUpdateScore(score);
+          }}
+        />
       </View>
       <View style={styles.quit}>
         <TouchableOpacity onPress={() => navigation.navigate("StartPage")}>

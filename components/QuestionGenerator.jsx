@@ -81,8 +81,6 @@ export default function GenerateQuestion(updateQuestion) {
       })
       .then((json) => {
         try {
-          console.log(typeof json);
-          console.log(typeof json.league.standard[teamLeader.key]);
           let personId = json.league.standard[teamLeader.key][0].personId;
           let options = GetPlayerName(year, personId);
           if (options !== null) {
@@ -95,7 +93,7 @@ export default function GenerateQuestion(updateQuestion) {
         }
       })
       .catch((error) => {
-        console.error(error);
+        console.warn(error);
       });
   };
 

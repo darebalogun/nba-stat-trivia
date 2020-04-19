@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import {
   View,
   Text,
@@ -8,63 +8,70 @@ import {
 } from "react-native";
 import GenerateQuestion from "./QuestionGenerator";
 
-export default function QuestionCard(props) {
-  const [question, setQuestion] = useState(
-    "Who led the league in rebounds in 2004?"
-  );
-  const [options, setOptions] = useState([
-    { key: "1", name: "Shaquille O'Neil", correct: false },
-    { key: "2", name: "Kevin Garnett", correct: false },
-    { key: "3", name: "Tim Duncan", correct: false },
-  ]);
-
-  useEffect(() => {
-    GenerateQuestion(updateQuestion);
-  }, []);
-
-  const updateQuestion = (question, options) => {
-    setQuestion(question);
-    setOptions(options);
+export default class QuestionCard extends Component {
+  state = {
+    question: "",
+    options: [
+      { key: "1", name: "", correct: false },
+      { key: "2", name: "", correct: false },
+      { key: "3", name: "", correct: false },
+    ],
+    noCorrect: 0,
   };
 
-  const onOptionPress = (option) => {
-    console.log(option.correct);
-    GenerateQuestion(updateQuestion);
+  componentDidMount() {
+    GenerateQuestion(this.updateQuestion);
+  }
+
+  updateQuestion = (question, options) => {
+    this.setState({ question });
+    this.setState({ options });
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.question}>
-        <Text>{question}</Text>
+  onOptionPress = (option) => {
+    GenerateQuestion(this.updateQuestion);
+    if (option.correct) {
+      const newNoCorrect = this.state.noCorrect + 1;
+      this.setState({ noCorrect: newNoCorrect });
+      this.props.updateScore(this.state.noCorrect);
+    }
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.question}>
+          <Text>{this.state.question}</Text>
+        </View>
+        <View style={styles.options}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.onOptionPress(this.state.options[0])}
+          >
+            <View>
+              <Text>{this.state.options[0].name}</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.onOptionPress(this.state.options[1])}
+          >
+            <View>
+              <Text>{this.state.options[1].name}</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.onOptionPress(this.state.options[2])}
+          >
+            <View>
+              <Text>{this.state.options[2].name}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.options}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onOptionPress(options[0])}
-        >
-          <View>
-            <Text>{options[0].name}</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onOptionPress(options[1])}
-        >
-          <View>
-            <Text>{options[1].name}</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onOptionPress(options[2])}
-        >
-          <View>
-            <Text>{options[2].name}</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
