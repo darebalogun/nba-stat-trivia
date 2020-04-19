@@ -34,11 +34,14 @@ export default function QuestionPage({ navigation }) {
           }}
         />
       </View>
-      <View style={styles.quit}>
-        <TouchableOpacity onPress={() => navigation.navigate("StartPage")}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("StartPage")}
+        style={styles.quit}
+      >
+        <View>
           <Text>Quit</Text>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }

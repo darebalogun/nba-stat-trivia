@@ -22,11 +22,15 @@ export default function EndPage({ route, navigation }) {
       <View style={styles.questionCard}>
         <EndPageCard score={score} />
       </View>
-      <View style={styles.quit}>
-        <TouchableOpacity onPress={() => navigation.navigate("StartPage")}>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("StartPage")}
+        style={styles.quit}
+      >
+        <View>
           <Text>Quit</Text>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
