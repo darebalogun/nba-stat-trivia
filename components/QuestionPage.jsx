@@ -26,6 +26,9 @@ export default function QuestionPage({ navigation }) {
             navigation.navigate("EndPage", { score: score });
           }}
         />
+        <View>
+          <Text>{score}</Text>
+        </View>
       </View>
       <View style={styles.questionCard}>
         <QuestionCard

@@ -8,9 +8,15 @@ import {
   Text,
 } from "react-native";
 import EndPageCard from "./EndPageCard";
+import { useDispatch } from "react-redux";
+import { updateHighScore } from "../store/actions/highScore";
 
 export default function EndPage({ route, navigation }) {
   const { score } = route.params;
+  const dispatch = useDispatch();
+
+  dispatch(updateHighScore(score));
+
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>

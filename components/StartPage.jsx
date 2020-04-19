@@ -1,8 +1,11 @@
 import React from "react";
-import { StyleSheet, View, Image, Dimensions } from "react-native";
+import { StyleSheet, View, Image, Dimensions, Text } from "react-native";
 import StartPageCard from "./StartPageCard";
+import { useSelector } from "react-redux";
 
 export default function StartPage({ navigation }) {
+  const highScore = useSelector((state) => state.highScore.highScore);
+
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
@@ -10,6 +13,9 @@ export default function StartPage({ navigation }) {
           source={require(".././assets/placeholder.png")}
           style={styles.image}
         />
+        <View>
+          <Text>{highScore}</Text>
+        </View>
       </View>
       <View style={styles.questionCard}>
         <StartPageCard onNewGame={() => navigation.navigate("QuestionPage")} />

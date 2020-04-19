@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import GenerateQuestion from "./QuestionGenerator";
+import GenerateQuestion from "./QuestionGenerator.js";
 
 export default class QuestionCard extends Component {
   state = {
