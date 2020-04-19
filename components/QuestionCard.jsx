@@ -22,8 +22,12 @@ export default class QuestionCard extends Component {
   };
 
   async componentDidMount() {
-    let { question, options } = await GenerateQuestion();
+    let question, options, nextQuestion, nextOptions;
+    [question, options] = await GenerateQuestion();
     this.updateQuestion(question, options);
+
+    [nextQuestion, nextOptions] = await GenerateQuestion();
+    this.updateNextQuestion(nextQuestion, nextOptions);
   }
 
   updateQuestion = (question, options) => {
@@ -37,13 +41,20 @@ export default class QuestionCard extends Component {
   };
 
   onOptionPress = async (option) => {
-    let { question, options } = await GenerateQuestion();
-    this.updateQuestion(question, options);
+    this.setState({
+      question: this.state.nextQuestion,
+      options: this.state.nextOptions,
+    });
+
     if (option.correct) {
       const newNoCorrect = this.state.noCorrect + 1;
       this.setState({ noCorrect: newNoCorrect });
       this.props.updateScore(this.state.noCorrect);
     }
+
+    let question, options;
+    [question, options] = await GenerateQuestion();
+    this.updateNextQuestion(question, options);
   };
 
   render() {

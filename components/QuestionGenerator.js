@@ -84,7 +84,7 @@ export default async function GenerateQuestion(updateQuestion) {
     if (options == null) {
       return await GenerateQuestion();
     }
-    return { question: question, options, options };
+    return [question, options];
   } catch (error) {
     console.warn(error);
     return await GenerateQuestion();
