@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, View, Image, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import EndPageCard from "./EndPageCard";
 
 export default function EndPage({ route, navigation }) {
@@ -14,6 +21,11 @@ export default function EndPage({ route, navigation }) {
       </View>
       <View style={styles.questionCard}>
         <EndPageCard score={score} />
+      </View>
+      <View style={styles.quit}>
+        <TouchableOpacity onPress={() => navigation.navigate("StartPage")}>
+          <Text>Quit</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -47,5 +59,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 30,
     height: "60%",
+  },
+  quit: {
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 10,
+    height: Dimensions.get("screen").height / 15,
+    width: "50%",
+    margin: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

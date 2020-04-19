@@ -20,5 +20,6 @@ export default function EndPageCard(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    fontSize: 30,
   },
 });
