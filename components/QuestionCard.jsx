@@ -21,9 +21,9 @@ export default class QuestionCard extends Component {
     noCorrect: 0,
   };
 
-  componentDidMount() {
-    GenerateQuestion(this.updateQuestion);
-    GenerateQuestion(this.updateNextQuestion);
+  async componentDidMount() {
+    let { question, options } = await GenerateQuestion();
+    this.updateQuestion(question, options);
   }
 
   updateQuestion = (question, options) => {
@@ -36,12 +36,9 @@ export default class QuestionCard extends Component {
     this.setState({ nextOptions });
   };
 
-  onOptionPress = (option) => {
-    this.setState({
-      question: this.state.nextQuestion,
-      options: this.state.nextOptions,
-    });
-    GenerateQuestion(this.updateNextQuestion);
+  onOptionPress = async (option) => {
+    let { question, options } = await GenerateQuestion();
+    this.updateQuestion(question, options);
     if (option.correct) {
       const newNoCorrect = this.state.noCorrect + 1;
       this.setState({ noCorrect: newNoCorrect });
@@ -58,7 +55,9 @@ export default class QuestionCard extends Component {
         <View style={styles.options}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.onOptionPress(this.state.options[0])}
+            onPress={async () =>
+              await this.onOptionPress(this.state.options[0])
+            }
           >
             <View>
               <Text>{this.state.options[0].name}</Text>
@@ -66,7 +65,9 @@ export default class QuestionCard extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.onOptionPress(this.state.options[1])}
+            onPress={async () =>
+              await this.onOptionPress(this.state.options[1])
+            }
           >
             <View>
               <Text>{this.state.options[1].name}</Text>
@@ -74,7 +75,9 @@ export default class QuestionCard extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.onOptionPress(this.state.options[2])}
+            onPress={async () =>
+              await this.onOptionPress(this.state.options[2])
+            }
           >
             <View>
               <Text>{this.state.options[2].name}</Text>
