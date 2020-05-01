@@ -13,13 +13,7 @@ export default function StartPageCard(props) {
   );
   const [options, setOptions] = useState([
     { key: "1", value: "New Game", onPress: props.onNewGame },
-    {
-      key: "2",
-      value: "LeaderBoard",
-      onPress: () => {
-        console.log("LeaderBoard Pressed");
-      },
-    },
+    { key: "2", value: "LeaderBoard", onPress: props.onLeaderboardPress },
     {
       key: "3",
       value: "Highscore",

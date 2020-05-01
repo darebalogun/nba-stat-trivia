@@ -7,9 +7,7 @@ const initialState = {
 const highScoreReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_HIGHSCORE:
-      if (action.newHighScore > state.highScore) {
-        return { ...state, highScore: action.newHighScore };
-      }
+      return { ...state, highScore: action.newHighScore };
     default:
       return state;
   }

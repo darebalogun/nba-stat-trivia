@@ -4,7 +4,7 @@ const teamLeaders = [
   { text: "points per game", key: "ppg" },
   { text: "rebounds per game", key: "trpg" },
   { text: "assists per game", key: "apg" },
-  { text: "feild goal percentage", key: "fgp" },
+  { text: "field goal percentage", key: "fgp" },
   { text: "3-point percentage", key: "tpp" },
   { text: "free-throw percentage", key: "ftp" },
   { text: "blocks per game", key: "bpg" },

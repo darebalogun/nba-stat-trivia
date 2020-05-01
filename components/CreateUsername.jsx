@@ -1,20 +1,21 @@
-import React from "react";
-import { StyleSheet, View, Image, Dimensions, Text } from "react-native";
-import StartPageCard from "./StartPageCard";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+  Text,
+} from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 
-import * as authActions from "../store/actions/auth";
+export default function CreateUsername({ navigation }) {
+  const [input, setInput] = useState("Enter username");
+  const [valid, setValid] = useState(false);
 
-export default function StartPage({ navigation }) {
-  const highScore = useSelector((state) => state.highScore.highScore);
-
-  const dispatch = useDispatch();
-
-  const loginHandler = () => {
-    dispatch(authActions.login());
+  const onChangeText = async (text) => {
+    setInput(text);
   };
-
-  loginHandler();
 
   return (
     <View style={styles.container}>
@@ -23,16 +24,19 @@ export default function StartPage({ navigation }) {
           source={require(".././assets/placeholder.png")}
           style={styles.image}
         />
-        <View>
-          <Text>{highScore}</Text>
-        </View>
       </View>
       <View style={styles.questionCard}>
-        <StartPageCard
-          onNewGame={() => navigation.navigate("QuestionPage")}
-          onLeaderboardPress={() => navigation.navigate("CreateUsername")}
-        />
+        <TextInput onChangeText={(text) => onChangeText(text)} value={input} />
       </View>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("StartPage")}
+        style={styles.quit}
+      >
+        <View>
+          <Text>Quit</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -65,5 +69,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 30,
     height: "60%",
+  },
+  quit: {
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 10,
+    height: Dimensions.get("screen").height / 15,
+    width: "50%",
+    margin: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
