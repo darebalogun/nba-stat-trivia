@@ -6,15 +6,71 @@ import {
   Dimensions,
   TouchableOpacity,
   Text,
+  Button,
+  Alert,
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function CreateUsername({ navigation }) {
+import * as authActions from "../store/actions/auth";
+import { updateUsername } from "../store/actions/username";
+import { updateHighScore } from "../store/actions/highScore";
+
+export default function CreateUsername({ route, navigation }) {
   const [input, setInput] = useState("Enter username");
   const [valid, setValid] = useState(false);
+  const token = useSelector((state) => state.auth.token);
+  const score = useSelector((state) => state.highScore.highScore);
+  const userId = useSelector((state) => state.auth.userId);
 
   const onChangeText = async (text) => {
     setInput(text);
+  };
+
+  const dispatch = useDispatch();
+  const loginHandler = () => {
+    dispatch(authActions.login());
+  };
+
+  const login = async () => {
+    const response = await fetch(
+      "https://nba-stat-trivia.firebaseio.com/scores.json"
+    );
+    const resData = await response.json();
+
+    console.log(resData);
+
+    if (!resData.hasOwnProperty(input)) {
+      setValid(true);
+      dispatch(updateUsername(input));
+      await updateLeaderboard();
+      navigation.replace("LeaderBoard");
+    } else {
+      Alert.alert("Error", "Username is taken!");
+    }
+    console.log(valid);
+  };
+
+  const username = input;
+
+  const updateLeaderboard = async () => {
+    const response = await fetch(
+      `https://nba-stat-trivia.firebaseio.com/scores/${username}.json?auth=${token}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ score, userId, username }),
+      }
+    );
+
+    const resData = await response.json();
+    console.log(resData);
+
+    if (!response.ok) {
+      throw new Error("Could not fetch high scores!");
+    }
   };
 
   return (
@@ -27,6 +83,7 @@ export default function CreateUsername({ navigation }) {
       </View>
       <View style={styles.questionCard}>
         <TextInput onChangeText={(text) => onChangeText(text)} value={input} />
+        <Button title="Save" onPress={login} />
       </View>
 
       <TouchableOpacity

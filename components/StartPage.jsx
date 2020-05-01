@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Image, Dimensions, Text } from "react-native";
 import StartPageCard from "./StartPageCard";
 import { useSelector, useDispatch } from "react-redux";
-
 import * as authActions from "../store/actions/auth";
+import { store } from "../store/store";
 
 export default function StartPage({ navigation }) {
   const highScore = useSelector((state) => state.highScore.highScore);
 
   const dispatch = useDispatch();
-
   const loginHandler = () => {
     dispatch(authActions.login());
   };
 
-  loginHandler();
+  useEffect(() => {
+    loginHandler();
+  });
+
+  //console.log(store.getState().username.username);
+
+  const onLeaderboardPress = () => {
+    if (store.getState().username.username == "") {
+      navigation.navigate("CreateUsername", { highScore: highScore });
+    } else {
+      navigation.navigate("LeaderBoard");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -30,7 +41,7 @@ export default function StartPage({ navigation }) {
       <View style={styles.questionCard}>
         <StartPageCard
           onNewGame={() => navigation.navigate("QuestionPage")}
-          onLeaderboardPress={() => navigation.navigate("CreateUsername")}
+          onLeaderboardPress={onLeaderboardPress}
         />
       </View>
     </View>
