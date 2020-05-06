@@ -91,7 +91,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: Dimensions.get("screen").height / 9,
     padding: 5,
-    backgroundColor: "rgba(255,228,189,0.5)",
+    borderColor: "#693a00",
+    borderWidth: 1,
+    backgroundColor: "rgba(255,246,232,0.7)",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 35,
   },
   questionCard: {
     borderColor: "black",
@@ -99,6 +109,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 30,
     height: "60%",
-    //backgroundColor: "rgba(255,228,189,0.5)",
   },
 });

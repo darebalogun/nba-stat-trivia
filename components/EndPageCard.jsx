@@ -25,7 +25,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textContainer: {
-    backgroundColor: "rgba(255,228,189,0.5)",
+    borderColor: "#693a00",
+    backgroundColor: "rgba(255,246,232, 0.8)",
+    marginVertical: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 80,
     borderRadius: 20,
     padding: 30,
   },

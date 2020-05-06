@@ -48,8 +48,8 @@ export default function LeaderBoard({ navigation }) {
             rankStyle={styles.text}
             labelStyle={styles.labelStyle}
             scoreStyle={styles.text}
-            oddRowColor="rgba(255,228,189,0.3)"
-            evenRowColor="rgba(255,228,189,0.7)"
+            oddRowColor="rgba(255,246,237,0.3)"
+            evenRowColor="rgba(255,246,237,0.7)"
           />
         </View>
         <TouchableOpacity
@@ -72,6 +72,10 @@ const styles = StyleSheet.create({
     marginVertical: 35,
     marginHorizontal: 10,
     justifyContent: "space-between",
+  },
+  leaderboardContainer: {
+    borderColor: "#693a00",
+    borderWidth: 1,
   },
   title: {
     justifyContent: "center",
@@ -98,10 +102,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: Dimensions.get("screen").height / 9,
     padding: 5,
-    backgroundColor: "rgba(255,228,189,0.5)",
+    borderColor: "#693a00",
+    borderWidth: 1,
+    backgroundColor: "rgba(255,246,232,0.7)",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 35,
   },
   quit: {
-    borderColor: "black",
+    borderColor: "#693a00",
     borderWidth: 1,
     borderRadius: 10,
     height: Dimensions.get("screen").height / 15,
@@ -109,7 +123,15 @@ const styles = StyleSheet.create({
     margin: 20,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255,246,232, 0.6)",
+    backgroundColor: "rgba(255,246,232,0.7)",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 25,
   },
   text: {
     fontSize: 20,

@@ -11,7 +11,7 @@ export default function StartPageCard(props) {
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([
     { key: "1", value: "New Game", onPress: props.onNewGame },
-    { key: "2", value: "LeaderBoard", onPress: props.onLeaderboardPress },
+    { key: "2", value: "Leaderboard", onPress: props.onLeaderboardPress },
   ]);
 
   return (
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   button: {
-    borderColor: "black",
+    borderColor: "#693a00",
     borderWidth: 1,
     borderRadius: 10,
     marginHorizontal: 10,
@@ -67,7 +67,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: "5%",
-    backgroundColor: "rgba(255,246,232, 0.6)",
+    backgroundColor: "rgba(255,246,232, 0.8)",
     marginVertical: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 28,
   },
 });

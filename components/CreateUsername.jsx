@@ -6,7 +6,6 @@ import {
   Dimensions,
   TouchableOpacity,
   Text,
-  Button,
   Alert,
   ImageBackground,
 } from "react-native";
@@ -65,7 +64,6 @@ export default function CreateUsername({ navigation }) {
     );
 
     const resData = await response.json();
-    console.log(resData);
 
     if (!response.ok) {
       throw new Error("Could not fetch high scores!");
@@ -124,6 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginVertical: 35,
     marginHorizontal: 10,
+    justifyContent: "space-between",
   },
   title: {
     justifyContent: "center",
@@ -151,7 +150,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 10,
     alignItems: "center",
-    backgroundColor: "rgba(255,228,189,0.5)",
   },
   textInput: {
     borderRadius: 10,
@@ -159,8 +157,15 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(240, 240, 240, 0.9)",
     borderWidth: 1,
     padding: 6,
-    marginVertical: 20,
     width: "100%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 25,
   },
   topBar: {
     flexDirection: "row",
@@ -168,7 +173,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: Dimensions.get("screen").height / 9,
     padding: 5,
-    backgroundColor: "rgba(255,228,189,0.5)",
+    borderColor: "#693a00",
+    borderWidth: 1,
+    backgroundColor: "rgba(255,246,232,0.7)",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 35,
   },
   questionCard: {
     borderRadius: 10,
@@ -186,7 +201,17 @@ const styles = StyleSheet.create({
     margin: 20,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255,246,232, 0.6)",
+    borderColor: "#693a00",
+    borderWidth: 1,
+    backgroundColor: "rgba(255,246,232,0.7)",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 21,
   },
   saveButton: {
     width: "50%",

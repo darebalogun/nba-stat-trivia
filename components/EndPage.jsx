@@ -2,7 +2,6 @@ import React from "react";
 import {
   StyleSheet,
   View,
-  Image,
   Dimensions,
   TouchableOpacity,
   Text,
@@ -24,12 +23,6 @@ export default function EndPage({ route, navigation }) {
       style={styles.background}
     >
       <View style={styles.container}>
-        <View style={styles.topBar}>
-          <Image
-            source={require(".././assets/placeholder.png")}
-            style={styles.image}
-          />
-        </View>
         <View style={styles.questionCard}>
           <EndPageCard score={score} />
         </View>
@@ -53,6 +46,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginVertical: 35,
     marginHorizontal: 10,
+    justifyContent: "space-between",
   },
   background: {
     flex: 1,
@@ -70,7 +64,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: Dimensions.get("screen").height / 9,
     padding: 5,
-    backgroundColor: "rgba(255,228,189,0.5)",
+    borderColor: "#693a00",
+    borderWidth: 1,
+    backgroundColor: "rgba(255,246,232, 0.8)",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 25,
   },
   questionCard: {
     borderRadius: 10,
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
     height: "60%",
   },
   quit: {
-    borderColor: "black",
+    borderColor: "#693a00",
     borderWidth: 1,
     borderRadius: 10,
     height: Dimensions.get("screen").height / 15,
@@ -87,7 +91,15 @@ const styles = StyleSheet.create({
     margin: 20,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255,246,232, 0.6)",
+    backgroundColor: "rgba(255,246,232, 0.8)",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 25,
   },
   quitText: {
     fontSize: 20,
