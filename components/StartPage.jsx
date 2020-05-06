@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Image, Dimensions, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Dimensions,
+  Text,
+  ImageBackground,
+} from "react-native";
 import StartPageCard from "./StartPageCard";
 import { useSelector, useDispatch } from "react-redux";
 import * as authActions from "../store/actions/auth";
@@ -17,8 +24,6 @@ export default function StartPage({ navigation }) {
     loginHandler();
   });
 
-  //console.log(store.getState().username.username);
-
   const onLeaderboardPress = () => {
     if (store.getState().username.username == "") {
       navigation.navigate("CreateUsername", { highScore: highScore });
@@ -28,33 +33,53 @@ export default function StartPage({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.topBar}>
-        <Image
-          source={require(".././assets/placeholder.png")}
-          style={styles.image}
-        />
-        <View>
-          <Text>{highScore}</Text>
+    <ImageBackground
+      source={require("../assets/background.png")}
+      style={styles.background}
+    >
+      <View style={styles.container}>
+        <View style={styles.topBar}>
+          <Image
+            source={require(".././assets/placeholder.png")}
+            style={styles.image}
+          />
+          <View style={styles.highscore}>
+            <Text
+              style={{ fontSize: 25, color: "#693a00", fontWeight: "bold" }}
+            >
+              HIGHSCORE: {highScore}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.questionCard}>
+          <StartPageCard
+            onNewGame={() => navigation.navigate("QuestionPage")}
+            onLeaderboardPress={onLeaderboardPress}
+          />
         </View>
       </View>
-      <View style={styles.questionCard}>
-        <StartPageCard
-          onNewGame={() => navigation.navigate("QuestionPage")}
-          onLeaderboardPress={onLeaderboardPress}
-        />
-      </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     flexDirection: "column",
-    marginVertical: 35,
-    marginHorizontal: 10,
+    paddingTop: 35,
+    paddingHorizontal: 10,
+  },
+  background: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 1)",
+  },
+  highscore: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    opacity: 1,
   },
   image: {
     width: Dimensions.get("screen").height / 10,
@@ -63,18 +88,17 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    borderColor: "black",
-    borderWidth: 1,
     borderRadius: 10,
     height: Dimensions.get("screen").height / 9,
     padding: 5,
+    backgroundColor: "rgba(255,228,189,0.5)",
   },
   questionCard: {
     borderColor: "black",
-    borderWidth: 1,
     borderRadius: 10,
     marginHorizontal: 10,
     marginTop: 30,
     height: "60%",
+    //backgroundColor: "rgba(255,228,189,0.5)",
   },
 });

@@ -61,7 +61,7 @@ export default class QuestionCard extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.question}>
-          <Text>{this.state.question}</Text>
+          <Text style={styles.questionText}>{this.state.question}</Text>
         </View>
         <View style={styles.options}>
           <TouchableOpacity
@@ -71,7 +71,9 @@ export default class QuestionCard extends Component {
             }
           >
             <View>
-              <Text>{this.state.options[0].name}</Text>
+              <Text style={styles.optionText}>
+                {this.state.options[0].name}
+              </Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -81,7 +83,9 @@ export default class QuestionCard extends Component {
             }
           >
             <View>
-              <Text>{this.state.options[1].name}</Text>
+              <Text style={styles.optionText}>
+                {this.state.options[1].name}
+              </Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -91,7 +95,9 @@ export default class QuestionCard extends Component {
             }
           >
             <View>
-              <Text>{this.state.options[2].name}</Text>
+              <Text style={styles.optionText}>
+                {this.state.options[2].name}
+              </Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -111,6 +117,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding: "2%",
+    backgroundColor: "rgba(255,246,232, 0.6)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   options: {
     flex: 2,
@@ -127,5 +136,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: "5%",
+    backgroundColor: "rgba(255,246,232, 0.6)",
+  },
+  optionText: {
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "#693a00",
+  },
+  questionText: {
+    fontSize: 25,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "#693a00",
   },
 });
