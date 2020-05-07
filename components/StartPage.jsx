@@ -40,7 +40,7 @@ export default function StartPage({ navigation }) {
       <View style={styles.container}>
         <View style={styles.topBar}>
           <Image
-            source={require(".././assets/placeholder.png")}
+            source={require(".././assets/icon.png")}
             style={styles.image}
           />
           <View style={styles.highscore}>
@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    borderRadius: 10,
+    alignItems: "center",
+    borderRadius: 18,
     height: Dimensions.get("screen").height / 9,
     padding: 5,
     borderColor: "#693a00",
