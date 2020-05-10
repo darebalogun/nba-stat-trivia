@@ -4,7 +4,7 @@
     "slug": "rn-nba-stat-trivia",
     "description": "Test your knowledge of NBA stats and cement your spot on the global leaderboard. How many questions can you answer in 90 seconds?",
     "platforms": ["ios", "android"],
-    "version": "0.0.2",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon_notransparent.png",
     "splash": {
@@ -15,15 +15,16 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.darebalogun.nbastattrivia",
-      "buildNumber": "0.0.2",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
       "package": "com.darebalogun.nba_stat_trivia",
-      "permissions": []
+      "permissions": [],
+      "versionCode": 2
     }
   }
 }
