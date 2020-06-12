@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text,
   ImageBackground,
+  ScrollView,
 } from "react-native";
 import Leaderboard from "react-native-leaderboard";
 
@@ -40,18 +41,20 @@ export default function LeaderBoard({ navigation }) {
             <Text style={styles.titleText}>LeaderBoard</Text>
           </View>
         </View>
-        <View style={styles.leaderboardContainer}>
-          <Leaderboard
-            data={data}
-            sortBy="score"
-            labelBy="username"
-            rankStyle={styles.text}
-            labelStyle={styles.labelStyle}
-            scoreStyle={styles.text}
-            oddRowColor="rgba(255,246,237,0.3)"
-            evenRowColor="rgba(255,246,237,0.7)"
-          />
-        </View>
+        <ScrollView>
+          <View style={styles.leaderboardContainer}>
+            <Leaderboard
+              data={data}
+              sortBy="score"
+              labelBy="username"
+              rankStyle={styles.text}
+              labelStyle={styles.labelStyle}
+              scoreStyle={styles.text}
+              oddRowColor="rgba(255,246,237,0.3)"
+              evenRowColor="rgba(255,246,237,0.7)"
+            />
+          </View>
+        </ScrollView>
         <TouchableOpacity
           onPress={() => navigation.navigate("StartPage")}
           style={styles.quit}

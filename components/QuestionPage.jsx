@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -6,6 +6,7 @@ import {
   Dimensions,
   Text,
   ImageBackground,
+  AppState,
 } from "react-native";
 import QuestionCard from "./QuestionCard";
 import CountdownCircle from "react-native-countdown-circle";
@@ -13,6 +14,20 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function QuestionPage({ navigation }) {
   const [score, setScore] = useState(0);
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  useEffect(() => {
+    AppState.addEventListener("change", _handleAppStateChange);
+
+    return () => {
+      AppState.removeEventListener("change", _handleAppStateChange);
+    };
+  }, []);
+
+  const _handleAppStateChange = (nextAppState) => {
+    navigation.navigate("StartPage");
+    setAppState(nextAppState);
+  };
 
   const onUpdateScore = (score) => {
     setScore(score);

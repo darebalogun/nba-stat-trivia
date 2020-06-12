@@ -1,9 +1,11 @@
 export const LOGIN = "LOGIN";
 
+const API_KEY = process.env.GOOGLE_KEY;
+
 export const login = () => {
   return async (dispatch) => {
     const response = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCg0u1uNuAOHan8SVMdVUuHYpDy3cRmPds",
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
       {
         method: "POST",
         headers: {
